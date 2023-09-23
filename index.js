@@ -18,4 +18,5 @@ app.listen(port, () => {            //server starts listening for any attempts f
     console.log(`Now listening on port http://localhost:${port}`);
 });
 
-
+const emp_rtr = require('./routers/emp_R.js');
+app.use('/employs', emp_rtr);
