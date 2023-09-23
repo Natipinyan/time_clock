@@ -1,0 +1,39 @@
+<%- include("page_top.ejs") %>
+<main>
+    <h1>
+        employee list:
+    </h1>
+    <table>
+        <thead>
+        <tr>
+            <th>id:</th>
+            <th>first name:</th>
+            <th>last name:</th>
+            <th>phone number:</th>
+            <th>delete:</th>
+        </tr>
+        </thead>
+        <tbody id="mainTable">  </tbody>
+    </table>
+    <br><br><br>
+    <div>update a user:</div>
+    <form action="employs/Update" method="post" >
+        <input type="text" name="idOffUp" placeholder="id">
+        <input type="text" name="nameOffUp" placeholder="name">
+        <input type="text" name="lastNameOffUp" placeholder="family name">
+        <input type="text" name="phoneOffUp" placeholder="phone number">
+        <button>Update</button>
+    </form>
+    <br><br><br>
+    <div>add a user:</div>
+    <form action="/employs/Add" method="post" >
+        <input type="text" name="first_name"    id="first_name"        placeholder="name">
+        <input type="text" name="family_name"   id="family_name"       placeholder="family_name">
+        <input type="text" name="phone"         id="phone"             placeholder="phone">
+        <button>Add</button>
+    </form>
+
+</main>
+<script src="/emp_crud.js" ></script>
+<%- include("page_bottom.ejs") %>
+
