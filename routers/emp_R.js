@@ -47,7 +47,7 @@ router.post("/Update",(req, res) => {
     let first_name = req.body.nameOffUp;
     let last_name = req.body.lastNameOffUp;
     let phone = req.body.phoneOffUp;
-    let id = req.body.idOffUp
+    let id = req.body.idOffUp;
     let q=`UPDATE \`employes\`  SET \`first_name\`='${first_name}',\`family_name\`= '${last_name}',\`phone\`= '${phone}' WHERE id=${id} `;
     db_pool.query(q, function(err, rows, fields){
 

@@ -1,0 +1,27 @@
+<%- include("page_top.ejs") %>
+<main>
+    <h1>
+       good morning my bitches:
+    </h1>
+
+<div>chose your name:</div>
+        <select name="nameEmployee" id="nameEmployee"></select><br><br>
+    <button>in</button>
+    <button>out</button>
+</main>
+<script src="/timeChek_crud.js" ></script>
+<script>
+    async function getcats() {
+        let response = await fetch('employs/List');
+        let data = await response.json();
+        console.log(data);
+        let s = '';
+        for (let row of data){
+            s+=`<option>${row.id+"  "+row.first_name}</option>`
+        }
+        document.getElementById("nameEmployee").innerHTML = s;
+    }
+    getcats();
+</script>
+<%- include("page_bottom.ejs") %>
+

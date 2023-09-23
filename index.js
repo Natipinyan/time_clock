@@ -20,3 +20,6 @@ app.listen(port, () => {            //server starts listening for any attempts f
 
 const emp_rtr = require('./routers/emp_R.js');
 app.use('/employs', emp_rtr);
+
+const timeChek_rtr = require('./routers/timeChek_R.js');
+app.use('/timechek', timeChek_rtr);
