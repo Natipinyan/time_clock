@@ -26,17 +26,14 @@ router.get("/List",(req, res) => {
 });
 
 router.post("/in",(req, res) => {
-
-   /* let id = req.body.idOffUp;
-
-    let q=`UPDATE \`list_time\`  SET \`Entry_Time\`= '2023-09-23T17:28:14.000Z' WHERE id=${id} `;*/
-
-    let{idEmployee}=req.body;
+   let id    = req.body.idEmp;
+   let date  =  req.body.date;
 
     let Query = "INSERT into list_time";
     Query+="(idEmployee,Entry_Time)";
     Query+= " VALUES ";
-    Query+=`('${idEmployee}','2023-09-23T17:28:14.000Z')`;
+    Query+=`('${id}',"${date}")`;
+    console.log(Query);
 
 
     db_pool.query(Query, function(err, rows, fields){
@@ -54,10 +51,12 @@ router.post("/in",(req, res) => {
 
 router.post("/out",(req, res) => {
 
-    let id = req.body.idEmployee;
+    let id    = req.body.idEmp;
+    let date  =  req.body.date;
+    //let Query= `UPDATE "list_time" SET "${`Depature_Time`}" = ${date} WHERE "list_time.id" = ${id}`;
+    let Query=`UPDATE \`list_time\`  SET \`Depature_Time\`='${date}' WHERE idEmployee=${id} `;
 
-    let Query=`UPDATE \`list_time\` SET \`Depature_Time\`='2023-09-22T21:00:00.000Z' WHERE idEmployee=${id} `;
-
+    console.log(Query);
 
     db_pool.query(Query, function(err, rows, fields){
 

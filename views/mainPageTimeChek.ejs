@@ -5,9 +5,13 @@
     </h1>
 
 <div>chose your name:</div>
+    <form>
         <select name="nameEmployee" id="nameEmployee"></select><br><br>
-    <button>in</button>
-    <button>out</button>
+    </form>
+        <button onclick="intime()" >send in</button>
+        <button onclick="outTime()" >send out</button>
+
+
 </main>
 <script src="/timeChek_crud.js" ></script>
 <script>
@@ -17,11 +21,45 @@
         console.log(data);
         let s = '';
         for (let row of data){
-            s+=`<option>${row.id+"  "+row.first_name}</option>`
+            s+=`<option value="${row.id}" >${row.first_name}</option>`
         }
         document.getElementById("nameEmployee").innerHTML = s;
     }
     getcats();
+
+
+    async function intime(){
+        let idEmp = document.getElementById("nameEmployee").value;
+        let date = new Date();
+
+        let JS = {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({"idEmp": idEmp, "date": date})
+        }
+        console.log(JS);
+
+            await fetch('/timechek/in',JS);
+    }
+
+    async function outTime(){
+        let idEmp = document.getElementById("nameEmployee").value;
+        let date = new Date();
+        let JS = {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({"idEmp": idEmp, "date": date})
+        }
+        console.log(JS);
+
+        await fetch('/timechek/out',JS);
+    }
+
+
+    const a = new Date();
+    console.log(a);
+
+
 </script>
 <%- include("page_bottom.ejs") %>
 
