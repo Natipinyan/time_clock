@@ -1,0 +1,60 @@
+<%- include("page_top.ejs") %>
+<main>
+    <h1>
+        employee list:
+    </h1>
+
+    <form>
+        <select name="nameEmployee" id="nameEmployee"></select><br><br>
+    </form>
+    <button onclick="getList()"> display</button>
+
+    <table>
+        <thead>
+        <tr>
+            <th>id:</th>
+            <th>first name:</th>
+            <th>employee id:</th>
+            <th>entry:</th>
+            <th>out:</th>
+        </tr>
+        </thead>
+        <tbody id="mainTable"></tbody>
+    </table>
+
+</main>
+<script src="lfWork.js"></script>
+
+<script>
+
+
+    function CreateTble() {
+        let str = "";
+        for (let line of raw_data) {
+            str += "<tr>";
+            str += "<td>" + line.idEmployee + "&nbsp&nbsp&nbsp&nbsp</td>";
+            str += "<td>" + line.Entry_Time + "&nbsp&nbsp&nbsp&nbsp</td>";
+            str += "<td>" + line.Depature_Time + "&nbsp&nbsp&nbsp&nbsp</td>";
+            str += "</tr>";
+        }
+        document.getElementById("mainTable").innerHTML = str;
+    }
+
+
+    async function getList() {
+        let idEmp = document.getElementById("nameEmployee").value;
+        console.log(idEmp);
+        let response = await fetch('lWork/List', {
+            method: "POST",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({idEmp: `${idEmp}`})
+        });
+        let data = await response.json();
+        console.log("data=", data);
+        raw_data = data;
+        console.log(data);
+        CreateTble();
+    }
+</script>
+<%- include("page_bottom.ejs") %>
+

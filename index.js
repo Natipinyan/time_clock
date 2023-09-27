@@ -23,3 +23,7 @@ app.use('/employs', emp_rtr);
 
 const timeChek_rtr = require('./routers/timeChek_R.js');
 app.use('/timechek', timeChek_rtr);
+
+const listWork_rtr = require('./routers/listWork_R.js');
+app.use('/lWork', listWork_rtr);
+

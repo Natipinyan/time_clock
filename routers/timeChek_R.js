@@ -27,12 +27,11 @@ router.get("/List",(req, res) => {
 
 router.post("/in",(req, res) => {
    let id    = req.body.idEmp;
-   let date  =  req.body.date;
 
     let Query = "INSERT into list_time";
-    Query+="(idEmployee,Entry_Time)";
+    Query+="(idEmployee)";
     Query+= " VALUES ";
-    Query+=`('${id}',"${date}")`;
+    Query+=`('${id}')`;
     console.log(Query);
 
 
@@ -52,9 +51,8 @@ router.post("/in",(req, res) => {
 router.post("/out",(req, res) => {
 
     let id    = req.body.idEmp;
-    let date  =  req.body.date;
-    //let Query= `UPDATE "list_time" SET "${`Depature_Time`}" = ${date} WHERE "list_time.id" = ${id}`;
-    let Query=`UPDATE \`list_time\`  SET \`Depature_Time\`='${date}' WHERE idEmployee=${id} `;
+    let Query=`UPDATE \`list_time\`  SET 
+    \`Depature_Time\`= CURRENT_TIMESTAMP WHERE idEmployee=${id} AND Depature_Time is null`;
 
     console.log(Query);
 

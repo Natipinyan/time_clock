@@ -35,7 +35,7 @@
         let JS = {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({"idEmp": idEmp, "date": date})
+            body: JSON.stringify({"idEmp": `${idEmp}`})
         }
         console.log(JS);
 
@@ -48,16 +48,12 @@
         let JS = {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({"idEmp": idEmp, "date": date})
+            body: JSON.stringify({"idEmp": `${idEmp}`})
         }
         console.log(JS);
 
         await fetch('/timechek/out',JS);
     }
-
-
-    const a = new Date();
-    console.log(a);
 
 
 </script>
