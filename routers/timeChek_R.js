@@ -51,9 +51,7 @@ router.post("/in",(req, res) => {
 router.post("/out",(req, res) => {
 
     let id    = req.body.idEmp;
-    let Query=`UPDATE \`list_time\`  SET 
-    \`Depature_Time\`= CURRENT_TIMESTAMP WHERE idEmployee=${id} AND Depature_Time is null`;
-
+    let Query=`UPDATE \`list_time\` SET \`Depature_Time\`= CURRENT_TIME WHERE idEmployee=${id} AND Depature_Time = '00:00:00'`;
     console.log(Query);
 
     db_pool.query(Query, function(err, rows, fields){

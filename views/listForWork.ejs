@@ -5,18 +5,18 @@
     </h1>
 
     <form>
-        <select name="nameEmployee" id="nameEmployee"></select><br><br>
+        <select onclick="getList()" name="nameEmployee" id="nameEmployee"></select><br><br>
     </form>
-    <button onclick="getList()"> display</button>
+
 
     <table>
         <thead>
         <tr>
-            <th>id:</th>
-            <th>first name:</th>
             <th>employee id:</th>
-            <th>entry:</th>
-            <th>out:</th>
+            <th>Entry_Date:</th>
+            <th>Entry_Time:</th>
+            <th>Depature Time :</th>
+            <th>Depature Time :</th>
         </tr>
         </thead>
         <tbody id="mainTable"></tbody>
@@ -32,13 +32,22 @@
         let str = "";
         for (let line of raw_data) {
             str += "<tr>";
-            str += "<td>" + line.idEmployee + "&nbsp&nbsp&nbsp&nbsp</td>";
-            str += "<td>" + line.Entry_Time + "&nbsp&nbsp&nbsp&nbsp</td>";
-            str += "<td>" + line.Depature_Time + "&nbsp&nbsp&nbsp&nbsp</td>";
+            str += "<td>" + line.idEmployee + "</td>";
+            str += "<td>" + new Date(line.Entry_Date).toLocaleDateString()+ "</td>";
+            str += "<td>" + line.Entry_Time + "</td>";
+            str += "<td>" + line.Depature_Time +"</td>";
+            str+=`<td><button onclick="deleteLine(${line.id});">delete</button></td>`;
             str += "</tr>";
         }
         document.getElementById("mainTable").innerHTML = str;
     }
+    async function deleteLine(index) {
+        let response = await fetch(`lWork/Delete/${index}`,{
+            method:'DELETE',
+        });
+        getList();
+    }
+
 
 
     async function getList() {
