@@ -17,3 +17,6 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+select{
+    width: 200px;
+}

@@ -8,7 +8,6 @@
         <select onclick="getList()" name="nameEmployee" id="nameEmployee"></select><br><br>
     </form>
 
-
     <table>
         <thead>
         <tr>
@@ -16,54 +15,13 @@
             <th>Entry_Date:</th>
             <th>Entry_Time:</th>
             <th>Depature Time :</th>
-            <th>Depature Time :</th>
+            <th>delete this line:</th>
         </tr>
         </thead>
         <tbody id="mainTable"></tbody>
     </table>
 
 </main>
-<script src="lfWork.js"></script>
-
-<script>
-
-
-    function CreateTble() {
-        let str = "";
-        for (let line of raw_data) {
-            str += "<tr>";
-            str += "<td>" + line.idEmployee + "</td>";
-            str += "<td>" + new Date(line.Entry_Date).toLocaleDateString()+ "</td>";
-            str += "<td>" + line.Entry_Time + "</td>";
-            str += "<td>" + line.Depature_Time +"</td>";
-            str+=`<td><button onclick="deleteLine(${line.id});">delete</button></td>`;
-            str += "</tr>";
-        }
-        document.getElementById("mainTable").innerHTML = str;
-    }
-    async function deleteLine(index) {
-        let response = await fetch(`lWork/Delete/${index}`,{
-            method:'DELETE',
-        });
-        getList();
-    }
-
-
-
-    async function getList() {
-        let idEmp = document.getElementById("nameEmployee").value;
-        console.log(idEmp);
-        let response = await fetch('lWork/List', {
-            method: "POST",
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({idEmp: `${idEmp}`})
-        });
-        let data = await response.json();
-        console.log("data=", data);
-        raw_data = data;
-        console.log(data);
-        CreateTble();
-    }
-</script>
+<script src="lfWork_crud.js"></script>
 <%- include("page_bottom.ejs") %>
 

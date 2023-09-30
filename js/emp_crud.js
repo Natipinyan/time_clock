@@ -25,6 +25,9 @@ async function deleteLine(index) {
     let response = await fetch(`employs/Delete/${index}`,{
         method:'DELETE',
     });
+    let responseAll = await fetch(`lWork/DeleteW/${index}`,{
+        method:'DELETE',
+    });
     getList();
 }
 

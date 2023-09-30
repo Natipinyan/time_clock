@@ -3,17 +3,12 @@ const router = express.Router()
 module.exports = router;
 
 router.get("/",(req, res) => {
-
     res.render("mainPageTimeChek", {pageTitle:"בוקר טוב"});
-
 });
 
 router.get("/List",(req, res) => {
-
     let q="SELECT * FROM `list_time`";
-
     db_pool.query(q, function(err, rows, fields){
-
         if(err)
         {
             res.status(500).json({message: err})
@@ -26,17 +21,13 @@ router.get("/List",(req, res) => {
 });
 
 router.post("/in",(req, res) => {
-   let id    = req.body.idEmp;
-
+    let id    = req.body.idEmp;
     let Query = "INSERT into list_time";
     Query+="(idEmployee)";
     Query+= " VALUES ";
     Query+=`('${id}')`;
-    console.log(Query);
-
 
     db_pool.query(Query, function(err, rows, fields){
-
         if(err)
         {
             res.status(500).json({message: err})
@@ -49,13 +40,9 @@ router.post("/in",(req, res) => {
 });
 
 router.post("/out",(req, res) => {
-
     let id    = req.body.idEmp;
     let Query=`UPDATE \`list_time\` SET \`Depature_Time\`= CURRENT_TIME WHERE idEmployee=${id} AND Depature_Time = '00:00:00'`;
-    console.log(Query);
-
     db_pool.query(Query, function(err, rows, fields){
-
         if(err)
         {
             res.status(500).json({message: err})

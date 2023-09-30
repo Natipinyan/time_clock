@@ -8,54 +8,11 @@
     <form>
         <select name="nameEmployee" id="nameEmployee"></select><br><br>
     </form>
-        <button onclick="intime()" >send in</button>
-        <button onclick="outTime()" >send out</button>
+        <button onclick="intime()" >Check in</button>
+        <button onclick="outTime()" >Check out</button>
 
 
 </main>
 <script src="/timeChek_crud.js" ></script>
-<script>
-    async function getcats() {
-        let response = await fetch('employs/List');
-        let data = await response.json();
-        console.log(data);
-        let s = '';
-        for (let row of data){
-            s+=`<option value="${row.id}" >${row.first_name}</option>`
-        }
-        document.getElementById("nameEmployee").innerHTML = s;
-    }
-    getcats();
-
-
-    async function intime(){
-        let idEmp = document.getElementById("nameEmployee").value;
-        let date = new Date();
-
-        let JS = {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({"idEmp": `${idEmp}`})
-        }
-        console.log(JS);
-
-            await fetch('/timechek/in',JS);
-    }
-
-    async function outTime(){
-        let idEmp = document.getElementById("nameEmployee").value;
-        let date = new Date();
-        let JS = {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({"idEmp": `${idEmp}`})
-        }
-        console.log(JS);
-
-        await fetch('/timechek/out',JS);
-    }
-
-
-</script>
 <%- include("page_bottom.ejs") %>
 
